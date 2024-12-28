@@ -23,6 +23,11 @@
             overflow-x: hidden;
         }
 
+        .blur-in {
+            animation: blurFadeIn 1.5s ease-in forwards;
+            filter: blur(20px);
+        }
+
         #particles-js {
             position: fixed;
             top: 0;
@@ -41,6 +46,7 @@
             min-height: 100vh;
             padding: 40px 20px;
             background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+            animation: blurFadeIn 1.5s ease-in forwards;
         }
 
         .glass-effect {
@@ -54,19 +60,19 @@
             font-size: 4rem;
             text-align: center;
             margin: 20px 0;
-            background: linear-gradient(45deg, #00ffcc, #00ccff);
+            background: linear-gradient(45deg, #7b68ee, #9370db);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 255, 204, 0.3);
+            text-shadow: 0 0 30px rgba(123, 104, 238, 0.3);
             animation: titleFade 1.5s ease-out;
             letter-spacing: 2px;
         }
 
         .info-box {
-            background: rgba(0, 255, 204, 0.05);
+            background: rgba(123, 104, 238, 0.05);
             padding: 20px 30px;
             border-radius: 12px;
-            border: 1px solid rgba(0, 255, 204, 0.1);
+            border: 1px solid rgba(123, 104, 238, 0.1);
             margin: 10px 0;
             font-size: 1.1rem;
             width: 90%;
@@ -75,7 +81,7 @@
             transform: translateY(30px);
             opacity: 0;
             animation: slideUp 0.8s ease-out forwards;
-            box-shadow: 0 8px 32px rgba(0, 255, 204, 0.1);
+            box-shadow: 0 8px 32px rgba(123, 104, 238, 0.1);
         }
 
         .info-box:nth-child(2) {
@@ -107,7 +113,7 @@
         }
 
         #changelogs::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #00ffcc, #00ccff);
+            background: linear-gradient(45deg, #7b68ee, #9370db);
             border-radius: 3px;
         }
 
@@ -122,18 +128,18 @@
 
         .changelog:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.1);
-            border: 1px solid rgba(0, 255, 204, 0.2);
+            box-shadow: 0 5px 15px rgba(123, 104, 238, 0.1);
+            border: 1px solid rgba(123, 104, 238, 0.2);
         }
 
         .changelog-title {
             font-size: 1.3rem;
-            background: linear-gradient(45deg, #00ffcc, #00ccff);
+            background: linear-gradient(45deg, #7b68ee, #9370db);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 15px;
             font-weight: 600;
-            border-bottom: 1px solid rgba(0, 255, 204, 0.1);
+            border-bottom: 1px solid rgba(123, 104, 238, 0.1);
             padding-bottom: 10px;
         }
 
@@ -153,13 +159,13 @@
             content: '›';
             position: absolute;
             left: 0;
-            color: #00ffcc;
+            color: #9370db;
             font-size: 1.2em;
         }
 
         li:hover {
             transform: translateX(5px);
-            color: #00ffcc;
+            color: #9370db;
         }
 
         footer {
@@ -172,25 +178,38 @@
         }
 
         footer a {
-            color: #00ffcc;
+            color: #9370db;
             text-decoration: none;
             transition: all 0.3s ease;
             margin: 0 10px;
         }
 
         footer a:hover {
-            color: #00ccff;
-            text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+            color: #7b68ee;
+            text-shadow: 0 0 10px rgba(123, 104, 238, 0.5);
+        }
+
+        @keyframes blurFadeIn {
+            0% {
+                opacity: 0;
+                filter: blur(20px);
+            }
+            100% {
+                opacity: 1;
+                filter: blur(0);
+            }
         }
 
         @keyframes titleFade {
             0% {
                 opacity: 0;
                 transform: translateY(-50px);
+                filter: blur(20px);
             }
             100% {
                 opacity: 1;
                 transform: translateY(0);
+                filter: blur(0);
             }
         }
 
@@ -223,8 +242,8 @@
     <script>
         particlesJS('particles-js', {
             particles: {
-                number: { value: 80, density: { enable: true, value_area: 800 } },
-                color: { value: "#00ffcc" },
+                number: { value: 60, density: { enable: true, value_area: 900 } },
+                color: { value: "#9370db" },
                 shape: { type: "circle" },
                 opacity: {
                     value: 0.5,
@@ -239,13 +258,13 @@
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: "#00ffcc",
+                    color: "#9370db",
                     opacity: 0.4,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 2,
+                    speed: 1.2,
                     direction: "none",
                     random: false,
                     straight: false,
