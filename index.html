@@ -5,97 +5,137 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astral Gen Changelogs</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #121212, #0a0a0a);
+            color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
+            padding: 20px;
         }
+
         h1 {
-            font-size: 2.5rem;
-            margin-top: 20px;
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
             color: #00ffcc;
+            text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
         }
+
+        .developer-info {
+            font-size: 1rem;
+            color: #00ffcc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
         #changelogs {
             width: 90%;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            overflow-y: auto;
             margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-height: 500px; 
+            overflow-y: auto;
         }
-        .changelog-item {
-            margin-bottom: 20px;
-        }
-        .changelog-date {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #00ffcc;
-            margin-bottom: 10px;
-        }
-        .changelog-changes {
-            list-style: disc;
+
+        ul {
+            list-style-type: none;
             padding-left: 20px;
         }
-        .changelog-changes li {
-            margin-bottom: 5px;
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .changelog-title {
+            font-size: 1.2rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+            margin-bottom: 10px;
+        }
+
+        .changelog-content {
             font-size: 1rem;
-            color: #ffffff;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
     <h1>Astral Gen Changelogs</h1>
+    <div class="developer-info">Developed by toes1618</div>
+
     <div id="changelogs"></div>
 
     <footer>
-        <p>Powered by <a href="#" style="color: #00ffcc;">AstralHub</a> | <a href="#" style="color: #00ffcc;">GitHub Repository</a></p>
+        Powered by <a href="https://astralhub.xyz" target="_blank">AstralHub</a> | 
+        <a href="https://github.com/toeszzwozzy/changelogs" target="_blank">GitHub Repository</a>
     </footer>
 
     <script>
         async function loadChangelogs() {
             try {
                 const response = await fetch('changelogs.json');
-                if (!response.ok) throw new Error(`Error: ${response.statusText}`);
-                
                 const changelogs = await response.json();
+                
                 const changelogsDiv = document.getElementById('changelogs');
                 
-                changelogs.forEach(log => {
-                    const logDiv = document.createElement('div');
-                    logDiv.classList.add('changelog-item');
+                changelogs.forEach(entry => {
+                    const changelogItem = document.createElement('div');
+                    changelogItem.classList.add('changelog');
                     
-                    const date = document.createElement('div');
-                    date.classList.add('changelog-date');
-                    date.innerText = log.date;
-                    
-                    const changesList = document.createElement('ul');
-                    changesList.classList.add('changelog-changes');
-                    log.changes.forEach(change => {
-                        const li = document.createElement('li');
-                        li.innerText = change;
-                        changesList.appendChild(li);
+                    const title = document.createElement('div');
+                    title.classList.add('changelog-title');
+                    title.textContent = entry.date;
+                    changelogItem.appendChild(title);
+
+                    const content = document.createElement('ul');
+                    content.classList.add('changelog-content');
+                    entry.changes.forEach(change => {
+                        const changeItem = document.createElement('li');
+                        changeItem.textContent = change;
+                        content.appendChild(changeItem);
                     });
 
-                    logDiv.appendChild(date);
-                    logDiv.appendChild(changesList);
-                    changelogsDiv.appendChild(logDiv);
+                    changelogItem.appendChild(content);
+                    changelogsDiv.appendChild(changelogItem);
                 });
             } catch (error) {
-                console.error('Failed to load changelogs:', error);
-                document.getElementById('changelogs').innerText = 'Failed to load changelogs. Please try again later.';
+                console.error('Error loading changelogs:', error);
             }
         }
 
-        loadChangelogs();
+        window.onload = loadChangelogs;
     </script>
 </body>
 </html>
