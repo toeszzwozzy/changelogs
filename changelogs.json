@@ -1,5 +1,12 @@
 [
     {
+        "date": "[+] December 28th",
+        "changes": [
+            "Fixed regular gen cooldown not setting",
+            "Made the embeds better looking and only visible to the user"
+        ]
+    },
+    {
         "date": "[+] December 27th",
         "changes": [
             "Added more stable method of fetching the user avatar",
