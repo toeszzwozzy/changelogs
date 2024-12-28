@@ -1,6 +1,6 @@
 [
     {
-        "date": "[+} December 27th",
+        "date": "[+] December 27th",
         "changes": [
             "Added more stable method of fetching the user avatar",
             "Fixed issue with bulkgen cooldown auto setting before you even gen",
@@ -8,7 +8,7 @@
         ]
     },
     {
-        "date": "[+} December 26th",
+        "date": "[+] December 26th",
         "changes": [
             "Added bulk gen"
         ]
