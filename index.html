@@ -10,7 +10,6 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
             font-family: 'Arial', sans-serif;
             background: radial-gradient(circle, #121212, #0a0a0a);
@@ -22,7 +21,6 @@
             min-height: 100vh;
             padding: 20px;
         }
-
         h1 {
             font-size: 3rem;
             text-align: center;
@@ -30,14 +28,12 @@
             color: #00ffcc;
             text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
         }
-
         .developer-info {
             font-size: 1rem;
             color: #00ffcc;
             text-align: center;
             margin-bottom: 20px;
         }
-
         #changelogs {
             width: 90%;
             max-width: 800px;
@@ -50,29 +46,24 @@
             max-height: 500px; 
             overflow-y: auto;
         }
-
         ul {
             list-style-type: none;
             padding-left: 20px;
         }
-
         li {
             margin-bottom: 10px;
         }
-
         .changelog-title {
             font-size: 1.2rem;
             color: #00ffcc;
             text-shadow: 0 0 10px #00ffcc;
             margin-bottom: 10px;
         }
-
         .changelog-content {
             font-size: 1rem;
             line-height: 1.5;
             margin-bottom: 20px;
         }
-
         footer {
             margin-top: auto;
             padding: 10px;
@@ -80,12 +71,10 @@
             color: #666;
             text-align: center;
         }
-
         a {
             color: #00ffcc;
             text-decoration: none;
         }
-
         a:hover {
             text-decoration: underline;
         }
@@ -94,14 +83,11 @@
 <body>
     <h1>Astral Gen Changelogs</h1>
     <div class="developer-info">Developed by toes1618</div>
-
     <div id="changelogs"></div>
-
     <footer>
         Powered by <a href="https://astralhub.xyz" target="_blank">AstralHub</a> | 
         <a href="https://github.com/toeszzwozzy/changelogs" target="_blank">GitHub Repository</a>
     </footer>
-
     <script>
         async function loadChangelogs() {
             try {
@@ -121,12 +107,13 @@
 
                     const content = document.createElement('ul');
                     content.classList.add('changelog-content');
+                    
                     entry.changes.forEach(change => {
                         const changeItem = document.createElement('li');
-                        changeItem.textContent = change;
+                        changeItem.textContent = `+ ${change}`;
                         content.appendChild(changeItem);
                     });
-
+                    
                     changelogItem.appendChild(content);
                     changelogsDiv.appendChild(changelogItem);
                 });
@@ -134,7 +121,7 @@
                 console.error('Error loading changelogs:', error);
             }
         }
-
+        
         window.onload = loadChangelogs;
     </script>
 </body>
