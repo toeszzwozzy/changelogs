@@ -4,13 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astral Gen Changelogs</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        /* General reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: radial-gradient(circle, #121212, #0a0a0a);
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 10px;
+            color: #00ffcc;
+            text-shadow: 0 0 20px #00ffcc, 0 0 40px #00ffcc;
+        }
+
+        .developer-info {
+            font-size: 1rem;
+            color: #00ffcc;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #changelogs {
+            width: 90%;
+            max-width: 800px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            max-height: 500px; 
+            overflow-y: auto; 
+
+        ul {
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .changelog-title {
+            font-size: 1.2rem;
+            color: #00ffcc;
+            text-shadow: 0 0 10px #00ffcc;
+        }
+
+        .changelog-content {
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 10px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
+
+        a {
+            color: #00ffcc;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Astral Gen Changelogs</h1>
-        <p id="developer">Developed by toes1618</p>
-    </header>
+    <h1>Astral Gen Changelogs</h1>
+    <div class="developer-info">Developed by toes1618</div>
 
     <div id="changelogs">
 
@@ -22,39 +102,46 @@
     </footer>
 
     <script>
+
         async function loadChangelogs() {
             try {
+      
                 const response = await fetch('changelogs.json');
                 const changelogs = await response.json();
-                const changelogContainer = document.getElementById('changelogs');
                 
-                changelogs.forEach(changelog => {
-                    const changelogDiv = document.createElement('div');
-                    changelogDiv.classList.add('changelog');
+             
+                const changelogsDiv = document.getElementById('changelogs');
+                
+           
+                changelogs.forEach(entry => {
+                    const changelogItem = document.createElement('div');
+                    changelogItem.classList.add('changelog');
+                    
+                 
+                    const title = document.createElement('div');
+                    title.classList.add('changelog-title');
+                    title.textContent = entry.date; 
+                    changelogItem.appendChild(title);
 
-                    const titleDiv = document.createElement('div');
-                    titleDiv.classList.add('changelog-title');
-                    titleDiv.textContent = `[+] ${changelog.date}`;
-
-                    const listDiv = document.createElement('ul');
-                    listDiv.classList.add('changelog-list');
-
-                    changelog.changes.forEach(change => {
-                        const listItem = document.createElement('li');
-                        listItem.textContent = change;
-                        listDiv.appendChild(listItem);
+                
+                    const content = document.createElement('div');
+                    content.classList.add('changelog-content');
+                    entry.changes.forEach(change => {
+                        const changeItem = document.createElement('li');
+                        changeItem.textContent = change; 
+                        content.appendChild(changeItem);
                     });
 
-                    changelogDiv.appendChild(titleDiv);
-                    changelogDiv.appendChild(listDiv);
-                    changelogContainer.appendChild(changelogDiv);
+                    changelogItem.appendChild(content);
+                    changelogsDiv.appendChild(changelogItem);
                 });
             } catch (error) {
                 console.error('Error loading changelogs:', error);
             }
         }
 
-        loadChangelogs();
+
+        window.onload = loadChangelogs;
     </script>
 </body>
 </html>
