@@ -1,0 +1,10 @@
+[
+    {
+        "title": "[+] December 27th",
+        "content": "Fixed issue with bulkgen cooldown auto setting, added more stable method of fetching the user avatar, overall bug fixes."
+    },
+    {
+        "title": "[+] December 26th",
+        "content": "Added bulk gen."
+    }
+]
