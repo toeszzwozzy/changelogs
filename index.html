@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AstralGen Changelogs</title>
+    <title>Astral Gen Changelogs</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>AstralGen Changelogs</h1>
+        <h1>Astral Gen Changelogs</h1>
+        <p id="developer">Developed by toes1618</p>
     </header>
 
     <div id="changelogs">
+        
     </div>
 
     <footer>
@@ -32,14 +34,19 @@
 
                     const titleDiv = document.createElement('div');
                     titleDiv.classList.add('changelog-title');
-                    titleDiv.textContent = changelog.title;
+                    titleDiv.textContent = `[+] ${changelog.date}`;
 
-                    const contentDiv = document.createElement('div');
-                    contentDiv.classList.add('changelog-content');
-                    contentDiv.textContent = changelog.content;
+                    const listDiv = document.createElement('ul');
+                    listDiv.classList.add('changelog-list');
+
+                    changelog.changes.forEach(change => {
+                        const listItem = document.createElement('li');
+                        listItem.textContent = change;
+                        listDiv.appendChild(listItem);
+                    });
 
                     changelogDiv.appendChild(titleDiv);
-                    changelogDiv.appendChild(contentDiv);
+                    changelogDiv.appendChild(listDiv);
                     changelogContainer.appendChild(changelogDiv);
                 });
             } catch (error) {
