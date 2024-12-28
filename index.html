@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AstralGen Changelogs</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>AstralGen Changelogs</h1>
+    </header>
+
+    <div id="changelogs">
+    </div>
+
+    <footer>
+        Powered by <a href="https://astralhub.xyz" target="_blank">AstralHub</a> | 
+        <a href="https://github.com/toeszzwozzy/changelogs" target="_blank">GitHub Repository</a>
+    </footer>
+
+    <script>
+        async function loadChangelogs() {
+            try {
+                const response = await fetch('changelogs.json');
+                const changelogs = await response.json();
+                const changelogContainer = document.getElementById('changelogs');
+                
+                changelogs.forEach(changelog => {
+                    const changelogDiv = document.createElement('div');
+                    changelogDiv.classList.add('changelog');
+
+                    const titleDiv = document.createElement('div');
+                    titleDiv.classList.add('changelog-title');
+                    titleDiv.textContent = changelog.title;
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.classList.add('changelog-content');
+                    contentDiv.textContent = changelog.content;
+
+                    changelogDiv.appendChild(titleDiv);
+                    changelogDiv.appendChild(contentDiv);
+                    changelogContainer.appendChild(changelogDiv);
+                });
+            } catch (error) {
+                console.error('Error loading changelogs:', error);
+            }
+        }
+
+        loadChangelogs();
+    </script>
+</body>
+</html>
