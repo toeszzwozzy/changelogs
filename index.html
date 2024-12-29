@@ -9,23 +9,30 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #9370db;
+            --accent-color: #7b68ee;
+            --background-dark: #080808;
+            --text-color: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --hover-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: #0a0a0a;
-            color: #ffffff;
+            background: var(--background-dark);
+            color: var(--text-color);
             min-height: 100vh;
             overflow-x: hidden;
-        }
-
-        .blur-in {
-            animation: blurFadeIn 1.5s ease-in forwards;
-            filter: blur(20px);
+            line-height: 1.6;
         }
 
         #particles-js {
@@ -35,6 +42,7 @@
             width: 100%;
             height: 100%;
             z-index: 1;
+            filter: blur(1px);
         }
 
         .content-wrapper {
@@ -45,106 +53,130 @@
             align-items: center;
             min-height: 100vh;
             padding: 40px 20px;
-            background: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
-            animation: blurFadeIn 1.5s ease-in forwards;
+            background: linear-gradient(180deg, 
+                rgba(0,0,0,0.2) 0%, 
+                rgba(0,0,0,0.9) 100%
+            );
+            animation: fadeInBlur 1.5s ease-in forwards;
         }
 
         .glass-effect {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: var(--hover-transition);
         }
 
         h1 {
-            font-size: 4rem;
+            font-size: 4.2rem;
             text-align: center;
             margin: 20px 0;
-            background: linear-gradient(45deg, #7b68ee, #9370db);
+            background: linear-gradient(
+                45deg, 
+                var(--primary-color), 
+                var(--secondary-color), 
+                var(--accent-color)
+            );
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(123, 104, 238, 0.3);
-            animation: titleFade 1.5s ease-out;
-            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
+            animation: titleGlow 3s ease-in-out infinite;
+            letter-spacing: 3px;
+            font-weight: 700;
         }
 
+
         .info-box {
-            background: rgba(123, 104, 238, 0.05);
-            padding: 20px 30px;
-            border-radius: 12px;
-            border: 1px solid rgba(123, 104, 238, 0.1);
-            margin: 10px 0;
-            font-size: 1.1rem;
+            background: rgba(138, 43, 226, 0.08);
+            padding: 25px 35px;
+            border-radius: 15px;
+            border: 1px solid rgba(138, 43, 226, 0.15);
+            margin: 12px 0;
+            font-size: 1.2rem;
             width: 90%;
             max-width: 800px;
             text-align: center;
             transform: translateY(30px);
             opacity: 0;
             animation: slideUp 0.8s ease-out forwards;
-            box-shadow: 0 8px 32px rgba(123, 104, 238, 0.1);
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.15);
+            transition: var(--hover-transition);
         }
 
-        .info-box:nth-child(2) {
-            animation-delay: 0.2s;
+        .info-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(138, 43, 226, 0.2);
+            border-color: rgba(138, 43, 226, 0.3);
         }
 
         #changelogs {
             width: 90%;
             max-width: 800px;
-            margin: 30px 0;
-            padding: 30px;
+            margin: 35px 0;
+            padding: 35px;
             max-height: 600px;
             overflow-y: auto;
-            animation: fadeIn 1s ease-out 0.5s both;
-            background: rgba(255, 255, 255, 0.02);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 25px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
         }
 
         #changelogs::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
 
         #changelogs::-webkit-scrollbar-track {
             background: rgba(255, 255, 255, 0.02);
-            border-radius: 3px;
+            border-radius: 4px;
         }
 
         #changelogs::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, #7b68ee, #9370db);
-            border-radius: 3px;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            border-radius: 4px;
+            transition: var(--hover-transition);
+        }
+
+        #changelogs::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
         }
 
         .changelog {
-            background: rgba(255, 255, 255, 0.02);
-            margin-bottom: 20px;
-            padding: 25px;
-            border-radius: 15px;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
+            margin-bottom: 25px;
+            padding: 30px;
+            border-radius: 20px;
+            transition: var(--hover-transition);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         .changelog:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(123, 104, 238, 0.1);
-            border: 1px solid rgba(123, 104, 238, 0.2);
+            transform: translateY(-3px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
+            border: 1px solid rgba(138, 43, 226, 0.25);
+            background: rgba(138, 43, 226, 0.05);
         }
 
         .changelog-title {
-            font-size: 1.3rem;
-            background: linear-gradient(45deg, #7b68ee, #9370db);
+            font-size: 1.4rem;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             font-weight: 600;
-            border-bottom: 1px solid rgba(123, 104, 238, 0.1);
-            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(138, 43, 226, 0.15);
+            padding-bottom: 12px;
         }
 
         .changelog-content {
-            font-size: 1rem;
+            font-size: 1.1rem;
             line-height: 1.8;
         }
 
@@ -152,77 +184,96 @@
             margin-bottom: 12px;
             position: relative;
             padding-left: 25px;
-            transition: transform 0.3s ease;
+            transition: var(--hover-transition);
+            list-style: none;
         }
 
         li:before {
             content: '›';
             position: absolute;
             left: 0;
-            color: #9370db;
-            font-size: 1.2em;
+            color: var(--secondary-color);
+            font-size: 1.3em;
+            transition: var(--hover-transition);
         }
 
         li:hover {
             transform: translateX(5px);
-            color: #9370db;
+            color: var(--secondary-color);
+        }
+
+        li:hover:before {
+            color: var(--primary-color);
+            transform: scale(1.2);
         }
 
         footer {
             margin-top: auto;
-            padding: 20px;
+            padding: 25px;
             text-align: center;
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(15px);
         }
 
         footer a {
-            color: #9370db;
+            color: var(--secondary-color);
             text-decoration: none;
-            transition: all 0.3s ease;
-            margin: 0 10px;
+            transition: var(--hover-transition);
+            margin: 0 15px;
+            font-weight: 500;
+            position: relative;
+        }
+
+        footer a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            transition: var(--hover-transition);
         }
 
         footer a:hover {
-            color: #7b68ee;
-            text-shadow: 0 0 10px rgba(123, 104, 238, 0.5);
+            color: var(--primary-color);
+            text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
         }
 
-        @keyframes blurFadeIn {
+        footer a:hover:after {
+            width: 100%;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% {
+                text-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
+            }
+            50% {
+                text-shadow: 0 0 60px rgba(138, 43, 226, 0.6);
+            }
+        }
+
+        @keyframes fadeInBlur {
             0% {
                 opacity: 0;
                 filter: blur(20px);
             }
             100% {
                 opacity: 1;
-                filter: blur(0);
-            }
-        }
-
-        @keyframes titleFade {
-            0% {
-                opacity: 0;
-                transform: translateY(-50px);
-                filter: blur(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
                 filter: blur(0);
             }
         }
 
         @keyframes slideUp {
-            to {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
                 opacity: 1;
                 transform: translateY(0);
             }
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
     </style>
 </head>
@@ -242,77 +293,125 @@
     <script>
         particlesJS('particles-js', {
             particles: {
-                number: { value: 60, density: { enable: true, value_area: 900 } },
-                color: { value: "#9370db" },
-                shape: { type: "circle" },
+                number: {
+                    value: 100,
+                    density: {
+                        enable: true,
+                        value_area: 1500  // Increased for better spread
+                    }
+                },
+                color: { value: ["#8a2be2", "#9370db", "#7b68ee"] },
+                shape: {
+                    type: "circle",
+                    stroke: { width: 0 },
+                    polygon: { nb_sides: 5 }
+                },
                 opacity: {
                     value: 0.5,
                     random: true,
-                    animation: { enable: true, speed: 1, minimumValue: 0.1, sync: false }
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
                 },
                 size: {
                     value: 3,
                     random: true,
-                    animation: { enable: true, speed: 2, minimumValue: 0.1, sync: false }
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
                 },
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: "#9370db",
-                    opacity: 0.4,
+                    color: "#8a2be2",
+                    opacity: 0.3,
                     width: 1
                 },
                 move: {
                     enable: true,
-                    speed: 1.2,
+                    speed: 2,
                     direction: "none",
-                    random: false,
+                    random: true,
                     straight: false,
-                    out_mode: "out",
-                    bounce: false,
+                    out_mode: "bounce",  // Changed to bounce for more dynamic movement
+                    bounce: true,
+                    attract: {
+                        enable: true,
+                        rotateX: 1200,
+                        rotateY: 1200
+                    }
                 }
             },
             interactivity: {
                 detect_on: "canvas",
                 events: {
-                    onhover: { enable: true, mode: "repulse" },
-                    onclick: { enable: true, mode: "push" },
+                    onhover: {
+                        enable: true,
+                        mode: ["grab", "bubble"]  // Multiple modes for richer interaction
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
                     resize: true
                 },
                 modes: {
-                    repulse: { distance: 100, duration: 0.4 },
-                    push: { particles_nb: 4 }
+                    grab: {
+                        distance: 200,
+                        line_linked: {
+                            opacity: 0.8
+                        }
+                    },
+                    bubble: {
+                        distance: 250,
+                        size: 6,
+                        duration: 2,
+                        opacity: 0.8,
+                        speed: 3
+                    },
+                    push: {
+                        particles_nb: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    }
                 }
             },
             retina_detect: true
         });
 
-        async function loadChangelogs() {
+
+                async function loadChangelogs() {
             try {
                 const response = await fetch('changelogs.json');
                 const changelogs = await response.json();
-                
                 const changelogsDiv = document.getElementById('changelogs');
                 
                 changelogs.forEach((entry, index) => {
                     const changelogItem = document.createElement('div');
                     changelogItem.classList.add('changelog');
-                    changelogItem.style.animation = `fadeIn 0.5s ease-out ${index * 0.1 + 0.5}s both`;
+                    changelogItem.style.animation = `fadeInBlur 0.5s ease-out ${index * 0.1 + 0.5}s both`;
                     
                     const title = document.createElement('div');
                     title.classList.add('changelog-title');
-                    title.textContent = entry.date;
-                    changelogItem.appendChild(title);
-
+                    title.textContent = entry.date.replace('[+]', '').trim();
+                    
                     const content = document.createElement('ul');
                     content.classList.add('changelog-content');
                     
                     entry.changes.forEach(change => {
                         const changeItem = document.createElement('li');
-                        changeItem.textContent = change;
+                        changeItem.textContent = `${change}`;
                         content.appendChild(changeItem);
                     });
                     
+                    changelogItem.appendChild(title);
                     changelogItem.appendChild(content);
                     changelogsDiv.appendChild(changelogItem);
                 });
@@ -320,7 +419,8 @@
                 console.error('Error loading changelogs:', error);
             }
         }
-        
+
+
         window.onload = loadChangelogs;
     </script>
 </body>
