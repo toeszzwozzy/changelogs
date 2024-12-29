@@ -3,7 +3,10 @@
         "date": "[+] December 28th",
         "changes": [
             "Fixed regular gen cooldown not setting",
-            "Made the embeds better looking and only visible to the user"
+            "Made the embeds better looking and only visible to the user",
+            "Completely revamped gen, remove create, delete, restock, authorize commands",
+            "Optimized alot of things should be faster and better and cleaner"
+            
         ]
     },
     {
