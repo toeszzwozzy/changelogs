@@ -2,25 +2,26 @@
     {
         "date": "[+] December 28th",
         "changes": [
-            "Fixed regular gen cooldown not setting",
-            "Made the embeds better looking and only visible to the user",
-            "Completely revamped gen, remove create, delete, restock, authorize commands",
-            "Optimized alot of things should be faster and better and cleaner"
+            "Fixed gen cooldown not setting after gening allowing users to gen with no cooldown.",
+            "Fixed embeds showing to everyone, as well as made them alot better looking.",
+            "Revamped the entire gen, removed create, delete, restock, authorize commands.",
+            "Gen should be alot faster and cleaner after revamp due to many optimizations and other changes."
             
         ]
     },
     {
         "date": "[+] December 27th",
         "changes": [
-            "Added more stable method of fetching the user avatar",
+            "Fixed avatar not showing some times, method is alot more stable/reliable.",
             "Fixed issue with bulkgen cooldown auto setting before you even gen",
-            "Few bug fixes and optimizations here and there"
+            "Fixed few other bugs."
         ]
     },
     {
         "date": "[+] December 26th",
         "changes": [
-            "Added bulk gen"
+            "Added bulkgen",
+            "Fixed embeds for both bulkgen and gen, look alot better."
         ]
     }
 ]
