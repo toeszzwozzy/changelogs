@@ -4,7 +4,9 @@
         "date": "[+] January  1rst",
         "changes": [
             "Re coded the entire thing, everything should be faster, stable, better in every way possible.",
-            "Major preformance and bug fixes."
+            "Major preformance and bug fixes.",
+            "Fixed users being able to use bulkgen without being authorized."
+            
         ]
     },
     {
