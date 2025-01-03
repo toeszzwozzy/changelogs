@@ -4,286 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Astral Gen Changelogs</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
-        :root {
-            --primary-color: #8a2be2;
-            --secondary-color: #9370db;
-            --accent-color: #7b68ee;
-            --background-dark: #080808;
-            --text-color: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.04);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --hover-transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
-
-        body {
-            background: var(--background-dark);
-            color: var(--text-color);
-            min-height: 100vh;
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
-
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            filter: blur(1px);
-        }
-
-        .content-wrapper {
-            position: relative;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            padding: 40px 20px;
-            background: linear-gradient(180deg, 
-                rgba(0,0,0,0.2) 0%, 
-                rgba(0,0,0,0.9) 100%
-            );
-            animation: fadeInBlur 1.5s ease-in forwards;
-        }
-
-        .glass-effect {
-            background: var(--glass-bg);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            transition: var(--hover-transition);
-        }
-
-        h1 {
-            font-size: 4.2rem;
-            text-align: center;
-            margin: 20px 0;
-            background: linear-gradient(
-                45deg, 
-                var(--primary-color), 
-                var(--secondary-color), 
-                var(--accent-color)
-            );
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
-            animation: titleGlow 3s ease-in-out infinite;
-            letter-spacing: 3px;
-            font-weight: 700;
-        }
-
-
-        .info-box {
-            background: rgba(138, 43, 226, 0.08);
-            padding: 25px 35px;
-            border-radius: 15px;
-            border: 1px solid rgba(138, 43, 226, 0.15);
-            margin: 12px 0;
-            font-size: 1.2rem;
-            width: 90%;
-            max-width: 800px;
-            text-align: center;
-            transform: translateY(30px);
-            opacity: 0;
-            animation: slideUp 0.8s ease-out forwards;
-            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.15);
-            transition: var(--hover-transition);
-        }
-
-        .info-box:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 12px 40px rgba(138, 43, 226, 0.2);
-            border-color: rgba(138, 43, 226, 0.3);
-        }
-
-        #changelogs {
-            width: 90%;
-            max-width: 800px;
-            margin: 35px 0;
-            padding: 35px;
-            max-height: 600px;
-            overflow-y: auto;
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 25px;
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
-        }
-
-        #changelogs::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        #changelogs::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 4px;
-        }
-
-        #changelogs::-webkit-scrollbar-thumb {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            border-radius: 4px;
-            transition: var(--hover-transition);
-        }
-
-        #changelogs::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(45deg, var(--secondary-color), var(--accent-color));
-        }
-
-        .changelog {
-            background: rgba(255, 255, 255, 0.03);
-            margin-bottom: 25px;
-            padding: 30px;
-            border-radius: 20px;
-            transition: var(--hover-transition);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .changelog:hover {
-            transform: translateY(-3px) scale(1.01);
-            box-shadow: 0 8px 25px rgba(138, 43, 226, 0.2);
-            border: 1px solid rgba(138, 43, 226, 0.25);
-            background: rgba(138, 43, 226, 0.05);
-        }
-
-        .changelog-title {
-            font-size: 1.4rem;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 18px;
-            font-weight: 600;
-            border-bottom: 1px solid rgba(138, 43, 226, 0.15);
-            padding-bottom: 12px;
-        }
-
-        .changelog-content {
-            font-size: 1.1rem;
-            line-height: 1.8;
-        }
-
-        li {
-            margin-bottom: 12px;
-            position: relative;
-            padding-left: 25px;
-            transition: var(--hover-transition);
-            list-style: none;
-        }
-
-        li:before {
-            content: '›';
-            position: absolute;
-            left: 0;
-            color: var(--secondary-color);
-            font-size: 1.3em;
-            transition: var(--hover-transition);
-        }
-
-        li:hover {
-            transform: translateX(5px);
-            color: var(--secondary-color);
-        }
-
-        li:hover:before {
-            color: var(--primary-color);
-            transform: scale(1.2);
-        }
-
-        footer {
-            margin-top: auto;
-            padding: 25px;
-            text-align: center;
-            width: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px);
-        }
-
-        footer a {
-            color: var(--secondary-color);
-            text-decoration: none;
-            transition: var(--hover-transition);
-            margin: 0 15px;
-            font-weight: 500;
-            position: relative;
-        }
-
-        footer a:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            transition: var(--hover-transition);
-        }
-
-        footer a:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
-        }
-
-        footer a:hover:after {
-            width: 100%;
-        }
-
-        @keyframes titleGlow {
-            0%, 100% {
-                text-shadow: 0 0 40px rgba(138, 43, 226, 0.4);
-            }
-            50% {
-                text-shadow: 0 0 60px rgba(138, 43, 226, 0.6);
-            }
-        }
-
-        @keyframes fadeInBlur {
-            0% {
-                opacity: 0;
-                filter: blur(20px);
-            }
-            100% {
-                opacity: 1;
-                filter: blur(0);
-            }
-        }
-
-        @keyframes slideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
 </head>
 <body>
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+    
     <div id="particles-js"></div>
     <div class="content-wrapper">
         <h1>Astral Gen Changelogs</h1>
+        <button class="theme-toggle">🌓</button>
+        
         <div class="info-box glass-effect">Want the gen in your own server? Feel free to DM me via Discord</div>
         <div class="info-box glass-effect">Developed by toes1618</div>
         <div id="changelogs" class="glass-effect"></div>
+        
         <footer>
             Powered by <a href="https://astralhub.xyz" target="_blank">AstralHub</a> | 
             <a href="https://github.com/toeszzwozzy/changelogs" target="_blank">GitHub Repository</a>
@@ -297,10 +35,10 @@
                     value: 100,
                     density: {
                         enable: true,
-                        value_area: 1500  // Increased for better spread
+                        value_area: 1500
                     }
                 },
-                color: { value: ["#8a2be2", "#9370db", "#7b68ee"] },
+                color: { value: ["#00e5ff", "#00bcd4", "#1de9b6"] },
                 shape: {
                     type: "circle",
                     stroke: { width: 0 },
@@ -329,7 +67,7 @@
                 line_linked: {
                     enable: true,
                     distance: 150,
-                    color: "#8a2be2",
+                    color: "#00e5ff",
                     opacity: 0.3,
                     width: 1
                 },
@@ -339,7 +77,7 @@
                     direction: "none",
                     random: true,
                     straight: false,
-                    out_mode: "bounce",  // Changed to bounce for more dynamic movement
+                    out_mode: "bounce",
                     bounce: true,
                     attract: {
                         enable: true,
@@ -353,7 +91,12 @@
                 events: {
                     onhover: {
                         enable: true,
-                        mode: ["grab", "bubble"]  // Multiple modes for richer interaction
+                        mode: "repulse",
+                        parallax: {
+                            enable: true,
+                            force: 60,
+                            smooth: 10
+                        }
                     },
                     onclick: {
                         enable: true,
@@ -362,32 +105,31 @@
                     resize: true
                 },
                 modes: {
-                    grab: {
+                    repulse: {
                         distance: 200,
-                        line_linked: {
-                            opacity: 0.8
-                        }
-                    },
-                    bubble: {
-                        distance: 250,
-                        size: 6,
-                        duration: 2,
-                        opacity: 0.8,
-                        speed: 3
+                        duration: 0.4
                     },
                     push: {
                         particles_nb: 4
-                    },
-                    remove: {
-                        particles_nb: 2
                     }
                 }
             },
             retina_detect: true
         });
 
+        // Theme toggle
+        const themeToggle = document.querySelector('.theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-theme');
+        });
 
-                async function loadChangelogs() {
+        // Loading animation
+        window.addEventListener('load', () => {
+            document.querySelector('.loader').style.display = 'none';
+        });
+
+        // Changelog loading
+        async function loadChangelogs() {
             try {
                 const response = await fetch('changelogs.json');
                 const changelogs = await response.json();
@@ -407,7 +149,7 @@
                     
                     entry.changes.forEach(change => {
                         const changeItem = document.createElement('li');
-                        changeItem.textContent = `${change}`;
+                        changeItem.textContent = change;
                         content.appendChild(changeItem);
                     });
                     
@@ -419,7 +161,6 @@
                 console.error('Error loading changelogs:', error);
             }
         }
-
 
         window.onload = loadChangelogs;
     </script>
