@@ -3,8 +3,10 @@
     {
         "date": "[+] January  2nd",
         "changes": [
-            "Fixed error in command handler.",
+            "Fixed a error in command handler.",
             "Fixed interaction timeouts.",
+            "Fixed dm logic failing to send dms",
+            "Fixed a follow up error in bulkgen",
             "Bug fixes."
         ]
     },
