@@ -1,6 +1,14 @@
 [
 
     {
+        "date": "[+] January  2nd",
+        "changes": [
+            "Fixed error in command handler.",
+            "Fixed interaction timeouts.",
+            "Bug fixes."
+        ]
+    },
+    {
         "date": "[+] January  1rst",
         "changes": [
             "Re coded the entire thing, everything should be faster, stable, better in every way possible.",
