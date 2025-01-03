@@ -1,4 +1,16 @@
 [
+     {
+        "date": "[+] January  3rd",
+        "changes": [
+            "Added a better working error handler.",
+            "Added more rate limits to prevent roblox api failing.",
+            "Added roblox queue to handle alot of request in a single minute.",
+            "Added generation queue to handle alot of gen request in a single minute.",
+            "Added a load balancer to help keep queues managed.",
+            "Added a circut breaker to also help with error handling.",
+            "Bug fixes."
+        ]
+    },
 
     {
         "date": "[+] January  2nd",
