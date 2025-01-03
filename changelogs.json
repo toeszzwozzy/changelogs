@@ -8,6 +8,7 @@
             "Added generation queue to handle alot of gen request in a single minute.",
             "Added a load balancer to help keep queues managed.",
             "Added a circut breaker to also help with error handling.",
+            "Fixed an error caused by expired interactions.",
             "Bug fixes."
         ]
     },
